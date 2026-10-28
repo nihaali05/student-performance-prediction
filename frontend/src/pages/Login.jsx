@@ -22,7 +22,13 @@ const Login = () => {
       else if (userData.role === 'faculty') navigate('/faculty/dashboard');
       else navigate('/student/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid email or password.');
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.message && (err.message.includes('Network Error') || !err.response)) {
+        setError('Cannot connect to backend server. Render may be waking up (takes ~30-50s) or request was blocked by CORS. Please try again in a few moments.');
+      } else {
+        setError(err.message || 'Unable to connect to server.');
+      }
     } finally {
       setLoading(false);
     }

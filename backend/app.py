@@ -28,12 +28,14 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     
-    # Security fix: replaced wildcard '*' CORS with explicit allowed origins.
-    # In production set ALLOWED_ORIGINS env var to your actual domain.
-    _allowed_origins = os.environ.get(
+    import re
+    # Security: support explicit origins and allow all Vercel domains (*.vercel.app)
+    _raw_origins = os.environ.get(
         'ALLOWED_ORIGINS',
         'http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000'
     ).split(',')
+    _allowed_origins = [o.strip() for o in _raw_origins if o.strip()]
+    _allowed_origins.append(re.compile(r"https://.*\.vercel\.app"))
     CORS(app, resources={r"/api/*": {"origins": _allowed_origins}}, supports_credentials=True)
     
     # Init Database
