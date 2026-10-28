@@ -55,7 +55,12 @@ const StudentStudyAssistant = () => {
     if (showLoading) setLoadingMaterials(true);
     try {
       const res = await getStudyMaterials();
-      setMaterials(res.data.materials || []);
+      const fetched = res.data.materials || [];
+      setMaterials(fetched);
+      setSelectedMaterialId((prev) => {
+        if (!prev) return '';
+        return fetched.some((m) => String(m.id) === String(prev)) ? prev : '';
+      });
     } catch (err) {
       console.error('Error fetching materials:', err);
     } finally {

@@ -273,10 +273,13 @@ def chat_with_assistant(current_user):
 
     chunks_query = StudyChunk.query.join(StudyMaterial)
     if material_id:
-        material = StudyMaterial.query.get_or_404(material_id)
-        if current_user.role == 'student' and not _student_can_access_material(current_user, material):
-            return jsonify({'message': 'Access denied to this study material.'}), 403
-        chunks_query = chunks_query.filter(StudyMaterial.id == material_id)
+        material = db.session.get(StudyMaterial, material_id)
+        if material:
+            if current_user.role == 'student' and not _student_can_access_material(current_user, material):
+                return jsonify({'message': 'Access denied to this study material.'}), 403
+            chunks_query = chunks_query.filter(StudyMaterial.id == material_id)
+        else:
+            material_id = None
     elif current_user.role == 'student':
         chunks_query = chunks_query.join(User, StudyMaterial.user_id == User.id).filter(or_(
             StudyMaterial.user_id == current_user.id,
@@ -309,10 +312,13 @@ def generate_quiz(current_user):
     
     chunks_query = StudyChunk.query.join(StudyMaterial)
     if material_id:
-        material = StudyMaterial.query.get_or_404(material_id)
-        if current_user.role == 'student' and not _student_can_access_material(current_user, material):
-            return jsonify({'message': 'Access denied to this study material.'}), 403
-        chunks_query = chunks_query.filter(StudyMaterial.id == material_id)
+        material = db.session.get(StudyMaterial, material_id)
+        if material:
+            if current_user.role == 'student' and not _student_can_access_material(current_user, material):
+                return jsonify({'message': 'Access denied to this study material.'}), 403
+            chunks_query = chunks_query.filter(StudyMaterial.id == material_id)
+        else:
+            material_id = None
     elif current_user.role == 'student':
         chunks_query = chunks_query.join(User, StudyMaterial.user_id == User.id).filter(or_(
             StudyMaterial.user_id == current_user.id,
