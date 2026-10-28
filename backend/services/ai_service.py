@@ -21,8 +21,8 @@ def _call_gemini(system_prompt, user_prompt, response_mime_type, conversation_hi
     if not api_key:
         raise AIServiceError("The assistant needs an AI API key. Set GEMINI_API_KEY and restart the backend.")
 
-    configured_model = _read_env('GEMINI_MODEL') or 'gemini-flash-lite-latest'
-    candidate_models = [configured_model, 'gemini-flash-lite-latest', 'gemini-3.8-flash', 'gemini-3.5-flash-lite']
+    configured_model = _read_env('GEMINI_MODEL') or 'gemini-3.5-flash'
+    candidate_models = [configured_model, 'gemini-3.5-flash', 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-flash-latest']
     seen_models = set()
     models_to_try = []
     for m in candidate_models:
