@@ -1,0 +1,73 @@
+{
+  "best_model_name": "Linear Regression",
+  "best_r2": 0.8977,
+  "metrics": {
+    "Linear Regression": {
+      "rmse": 3.5094,
+      "r2": 0.8977,
+      "mae": 2.8075,
+      "feature_importances": {
+        "attendance": 0.0395763389580141,
+        "internal_marks": 0.04255559457394894,
+        "assignment_score": 0.031142866239887563,
+        "quiz_score": 0.018859194659026964,
+        "study_hours": 0.01449974445345871,
+        "prev_gpa": 0.11490146101594675,
+        "prev_sem_score": 0.004611601192433799,
+        "assignment_completion": 0.0016566776215810204,
+        "participation": 0.0029728879034720064,
+        "backlogs": 0.687889259522283,
+        "recent_test_score": 0.04133437385994719
+      }
+    },
+    "Random Forest": {
+      "rmse": 4.0908,
+      "r2": 0.861,
+      "mae": 3.238,
+      "feature_importances": {
+        "attendance": 0.07735517968750483,
+        "internal_marks": 0.6445160861713376,
+        "assignment_score": 0.044190917419368064,
+        "quiz_score": 0.03467337927693461,
+        "study_hours": 0.012981963666729575,
+        "prev_gpa": 0.01100390324172936,
+        "prev_sem_score": 0.009820494480468655,
+        "assignment_completion": 0.01621685658434929,
+        "participation": 0.017120284963969168,
+        "backlogs": 0.0715636237805427,
+        "recent_test_score": 0.06055731072706604
+      }
+    },
+    "Gradient Boosting (XGBoost Alt)": {
+      "rmse": 3.8795,
+      "r2": 0.875,
+      "mae": 3.0469,
+      "feature_importances": {
+        "attendance": 0.08944907193098925,
+        "internal_marks": 0.5961923155396786,
+        "assignment_score": 0.04455108952171284,
+        "quiz_score": 0.037167515371261416,
+        "study_hours": 0.009207075073380894,
+        "prev_gpa": 0.009613730808718038,
+        "prev_sem_score": 0.00774324306853399,
+        "assignment_completion": 0.011666738286493918,
+        "participation": 0.009875124912736689,
+        "backlogs": 0.09662156616481431,
+        "recent_test_score": 0.08791252932168009
+      }
+    }
+  },
+  "feature_columns": [
+    "attendance",
+    "internal_marks",
+    "assignment_score",
+    "quiz_score",
+    "study_hours",
+    "prev_gpa",
+    "prev_sem_score",
+    "assignment_completion",
+    "participation",
+    "backlogs",
+    "recent_test_score"
+  ]
+}

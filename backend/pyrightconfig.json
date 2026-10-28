@@ -1,0 +1,15 @@
+{
+  "include": ["."],
+  "exclude": ["__pycache__", "venv", ".venv"],
+  "venvPath": "..",
+  "venv": "venv",
+  "pythonVersion": "3.9",
+  "typeCheckingMode": "off",
+  "reportMissingImports": false,
+  "reportMissingModuleSource": false,
+  "reportGeneralTypeIssues": false,
+  "reportOptionalMemberAccess": false,
+  "reportAttributeAccessIssue": false,
+  "reportUnusedImport": "warning",
+  "reportUnusedVariable": "warning"
+}
